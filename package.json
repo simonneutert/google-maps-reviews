@@ -1,0 +1,28 @@
+{
+  "name": "google-maps-reviews",
+  "version": "0.0.1",
+  "description": "Display Google Reviews of a Place on Google Maps on your website",
+  "main": "google-maps-reviews.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonneutert/google-maps-reviews.git"
+  },
+  "keywords": [
+    "google",
+    "google",
+    "maps",
+    "maps",
+    "places",
+    "reviews",
+    "html5"
+  ],
+  "author": "Simon Neutert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simonneutert/google-maps-reviews/issues"
+  },
+  "homepage": "https://github.com/simonneutert/google-maps-reviews#readme"
+}

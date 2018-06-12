@@ -24,7 +24,7 @@ made me think and remix their work into the following lines.
 Thank you guys!
 */
 
-var googlePlaces = function(elem, options) {
+export default function googlePlaces(elem, options) {
   // This is the easiest way to have default options.
   var settings = {
     // These are the defaults.
@@ -141,4 +141,7 @@ var googlePlaces = function(elem, options) {
     return
   }
   return service.getDetails(request, callback);
-};
+}
+
+// var googlePlaces = function(elem, options) {
+// };
