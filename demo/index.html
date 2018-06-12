@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Google Reviews Demo</title>
+
+  <!-- DO NOT FORGET TO SET YOUR OWN API KEY!  -->
+  <!-- Create an API key: -->
+  <!-- https://console.developers.google.com/apis/library/places-backend.googleapis.com/?q=places -->
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=YourGoogleAPIKeyHere"></script>
+
+  <!-- load the plugin/script -->
+  <!-- <script src="./node_modules/jquery-google-reviews/jquery-google-reviews.js" defer></script> -->
+  <script src="../src/google-maps-reviews.js"></script>
+
+  <!-- load the css to display the reviews beautifully -->
+  <link href="../src/google-maps-reviews.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- the plugin needs an id to interact with, best with an empty div -->
+  <div id="google-reviews"></div>
+
+  <script type="text/javascript">
+    //Find a placeID via https://developers.google.com/places/place-id
+    googlePlaces("google-reviews", {
+      placeId: 'ChIJZa6ezJa8j4AR1p1nTSaRtuQ',
+    });
+
+  </script>
+
+</body>
+
+</html>
