@@ -51,6 +51,7 @@ __then__
     min_rating: 4, // minimum rating of reviews to be displayed
     months: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
     text_break_length: "90", // length before a review box is set to max width
+    show_date: false, // renders the date of the review before the review itself
     shorten_names: true, // example: "Max Mustermann" -> "Max M.""
   });
 });

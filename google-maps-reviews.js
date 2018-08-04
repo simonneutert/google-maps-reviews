@@ -35,6 +35,7 @@ export default function googlePlaces(elem, options) {
     months: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
     text_break_length: "90",
     shorten_names: true,
+    show_date: false,
     placeId: ""
   };
   settings = Object.assign({}, settings, options);
@@ -108,9 +109,11 @@ export default function googlePlaces(elem, options) {
       var date = convertTime(reviews[i].time);
       var name = settings.shorten_names ? shorten_name(reviews[i].author_name) : reviews[i].author_name;
       var style = (reviews[i].text.length > parseInt(settings.text_break_length)) ? "review-item-long" : "review-item";
-      html = html + "<div class=" + style + "><div class='review-meta'><span class='review-author'>" + name + "</span><span class='review-sep'></span>" + "</div>" + stars + "<p class='review-text'>" + reviews[i].text + "</p></div>";
-      // I do not need to display the date... but if you do:
-      // +"<br><span class='review-date'>"+date+"</span>"+
+      var review = reviews[i].text
+      if (settings.show_date == true) {
+        review = "<span class='review-date'>"+date+"</span> " + review
+      }
+      html = html + "<div class=" + style + "><div class='review-meta'><span class='review-author'>" + name + "</span><span class='review-sep'></span>" + "</div>" + stars + "<p class='review-text'>" + review + "</p></div>";
     }
     target_div.innerHTML += html;
   };
