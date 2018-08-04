@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "google-maps-reviews": "0.0.1"
+    "google-maps-reviews": "0.0.17"
   }
 }
