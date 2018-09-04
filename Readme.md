@@ -53,6 +53,9 @@ __then__
     text_break_length: "90", // length before a review box is set to max width
     show_date: false, // renders the date of the review before the review itself
     shorten_names: true, // example: "Max Mustermann" -> "Max M.""
+    replace_anonymous: false, // do not replace anonymous author_name from JSON
+    anonymous_name: "Ein Google-Nutzer", // Google's default value depending on language used (en: "A Google User")
+    anonymous_name_replacement: "Möchte anonym bleiben", // replacement for default (never shortens)
   });
 });
 </script>

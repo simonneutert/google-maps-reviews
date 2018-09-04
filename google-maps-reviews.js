@@ -35,11 +35,13 @@ export default function googlePlaces(elem, options) {
     months: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
     text_break_length: "90",
     shorten_names: true,
+    replace_anonymous: false,
+    anonymous_name: "A Google User",
+    anonymous_name_replacement: "User chose to remain anonymous",
     show_date: false,
     placeId: ""
   };
   settings = Object.assign({}, settings, options);
-
   var target_div = document.getElementById(elem);
 
   var renderHeader = function(header) {
@@ -111,7 +113,14 @@ export default function googlePlaces(elem, options) {
       var style = (reviews[i].text.length > parseInt(settings.text_break_length)) ? "review-item-long" : "review-item";
       var review = reviews[i].text
       if (settings.show_date == true) {
-        review = "<span class='review-date'>"+date+"</span> " + review
+        review = "<span class='review-date'>"+date+"</span> " + review;
+      }
+      if (settings.replace_anonymous == true &&
+          settings.anonymous_name != "" &&
+          reviews[i].author_name.toLowerCase() == settings.anonymous_name.toLowerCase() &&
+          settings.anonymous_name_replacement != "") {
+
+        name = settings.anonymous_name_replacement;
       }
       html = html + "<div class=" + style + "><div class='review-meta'><span class='review-author'>" + name + "</span><span class='review-sep'></span>" + "</div>" + stars + "<p class='review-text'>" + review + "</p></div>";
     }
