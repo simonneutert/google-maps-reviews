@@ -10,5 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "google-maps-reviews": "0.0.17"
+  },
+  "devDependencies": {
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.23.0"
   }
 }
