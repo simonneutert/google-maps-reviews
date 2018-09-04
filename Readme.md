@@ -54,8 +54,8 @@ __then__
     show_date: false, // renders the date of the review before the review itself
     shorten_names: true, // example: "Max Mustermann" -> "Max M.""
     replace_anonymous: false, // do not replace anonymous author_name from JSON
-    anonymous_name: "Ein Google-Nutzer", // Google's default value depending on language used (en: "A Google User")
-    anonymous_name_replacement: "Möchte anonym bleiben", // replacement for default (never shortens)
+    anonymous_name: "A Google User", // Google's default value depending on language used (en: "A Google User")
+    anonymous_name_replacement: "User chose to remain anonymous", // replacement for default (never shortens)
   });
 });
 </script>
