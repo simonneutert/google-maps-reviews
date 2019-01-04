@@ -1,6 +1,6 @@
 # Display Google Reviews of a Place on Google Maps on your website
 
-on npm: https://www.npmjs.com/package/google-maps-reviews
+project on npm: https://www.npmjs.com/package/google-maps-reviews
 
 ## Credits
 Inspired by Steven Monson's magnificent article here:
