@@ -100,6 +100,14 @@ export default function googlePlaces(elem, options) {
     }
   };
 
+  var sortReviewsByDateDesc = function(reviews) {
+    if (typeof reviews != "undefined" && reviews != null && reviews.length != null && reviews.length > 0) {
+      return reviews.sort(function(a,b) {return (a.time > b.time) ? 1 : ((b.time > a.time) ? -1 : 0);} ).reverse();
+    } else {
+      return []
+    }
+  };
+
   var renderReviews = function(reviews) {
     reviews.reverse();
     var html = "";
@@ -140,9 +148,10 @@ export default function googlePlaces(elem, options) {
   var callback = function(place, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       var filtered_reviews = filterReviewsByMinRating(place.reviews);
-      if (filtered_reviews.length > 0) {
+      var sorted_reviews = sortReviewsByDateDesc(filtered_reviews);
+      if (sorted_reviews.length > 0) {
         renderHeader(settings.header);
-        renderReviews(filtered_reviews);
+        renderReviews(sorted_reviews);
         renderFooter(settings.footer);
       }
     }
