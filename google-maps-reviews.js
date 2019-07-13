@@ -32,13 +32,14 @@ export default function googlePlaces(elem, options) {
     footer: '',
     max_rows: 6,
     min_rating: 4,
-    months: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+    months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     text_break_length: "90",
     shorten_names: true,
     replace_anonymous: false,
     anonymous_name: "A Google User",
     anonymous_name_replacement: "User chose to remain anonymous",
     show_date: false,
+    show_profile_picture: false,
     placeId: ""
   };
   settings = Object.assign({}, settings, options);
@@ -63,6 +64,27 @@ export default function googlePlaces(elem, options) {
       return xname[0] + " " + xname[1][0] + ".";
     }
   };
+
+  var shortenName = function(name) {
+      if (name.split(" ").length > 1) {
+        var split_name = name.split(" ");
+        var first_name = split_name[0];
+        var last_name_first_letter = split_name[1][0];
+
+        if (last_name_first_letter == ".") {
+          return first_name;
+        } else {
+          return first_name + " " + last_name_first_letter + ".";
+        }
+      }
+      else if (name != undefined) {
+        return name;
+      }
+      else {
+        return settings.anonymous_name;
+      }
+    };
+
 
   var renderStars = function(rating) {
     var stars = '<div class="review-stars"><ul>';
@@ -115,25 +137,35 @@ export default function googlePlaces(elem, options) {
     // make sure the row_count is not greater than available records
     row_count = (row_count > reviews.length - 1) ? reviews.length - 1 : row_count;
     for (var i = row_count; i >= 0; i--) {
-      var stars = renderStars(reviews[i].rating);
-      var date = convertTime(reviews[i].time);
-      var name = settings.shorten_names ? shorten_name(reviews[i].author_name) : reviews[i].author_name;
-      var style = (reviews[i].text.length > parseInt(settings.text_break_length)) ? "review-item-long" : "review-item";
-      var review = reviews[i].text
+      var review = reviews[i];
+      var stars = renderStars(review.rating);
+      var date = convertTime(review.time);
+      var name = settings.shorten_names ? shortenName(review.author_name) : review.author_name;
+      var style = (review.text.length > parseInt(settings.text_break_length)) ? "review-item-long" : "review-item";
+      var review_text = review.text
       if (settings.show_date == true) {
-        review = "<span class='review-date'>"+date+"</span> " + review;
+        review_text = "<span class='review-date'>" + date + "</span> " + review_text;
       }
-      if (settings.replace_anonymous == true &&
-          settings.anonymous_name != "" &&
-          reviews[i].author_name.toLowerCase() == settings.anonymous_name.toLowerCase() &&
-          settings.anonymous_name_replacement != "") {
-
-        name = settings.anonymous_name_replacement;
-      }
-      html = html + "<div class=" + style + "><div class='review-meta'><span class='review-author'>" + name + "</span><span class='review-sep'></span>" + "</div>" + stars + "<p class='review-text'>" + review + "</p></div>";
+      name = rescueAnonymousReviews(review, name);
+      html = html + "<div class=" + style + "><div class='review-meta'><span class='review-author'>" + name + "</span><span class='review-sep'></span>" + "</div>" + stars + "<p class='review-text'>" + review_text + "</p></div>";
     }
     target_div.innerHTML += html;
   };
+
+  var rescueAnonymousReviews = function(review, name) {
+    if (settings.replace_anonymous == true &&
+        settings.anonymous_name != "" &&
+        (
+          review.author_name.toLowerCase() == settings.anonymous_name.toLowerCase() ||
+          review.author_name == undefined
+        ) &&
+        settings.anonymous_name_replacement != "") {
+      return settings.anonymous_name_replacement;
+    }
+    else {
+      return name;
+    }
+  }
 
   // GOOGLE PLACES API CALL STARTS HERE
 
@@ -163,6 +195,3 @@ export default function googlePlaces(elem, options) {
   }
   return service.getDetails(request, callback);
 }
-
-// var googlePlaces = function(elem, options) {
-// };
