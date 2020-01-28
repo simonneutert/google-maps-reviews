@@ -45,48 +45,37 @@ export default function googlePlaces(elem, options) {
   settings = Object.assign({}, settings, options);
   var target_div = document.getElementById(elem);
 
-  var renderHeader = function(header) {
+  var renderHeader = function (header) {
     var html = "";
     html += header + "<br>";
     target_div.innerHTML += html;
   };
 
-  var renderFooter = function(footer) {
+  var renderFooter = function (footer) {
     var html = "";
     html += "<br>" + footer + "<br>";
     target_div.innerHTML += html;
   };
 
-  var shorten_name = function(name) {
+  var shortenName = function (name) {
     if (name.split(" ").length > 1) {
-      var xname = "";
-      xname = name.split(" ");
-      return xname[0] + " " + xname[1][0] + ".";
+      var split_name = name.split(" ");
+      var first_name = split_name[0];
+      var last_name_first_letter = split_name[1][0];
+
+      if (last_name_first_letter == ".") {
+        return first_name;
+      } else {
+        return first_name + " " + last_name_first_letter + ".";
+      }
+    } else if (name != undefined) {
+      return name;
+    } else {
+      return settings.anonymous_name;
     }
   };
 
-  var shortenName = function(name) {
-      if (name.split(" ").length > 1) {
-        var split_name = name.split(" ");
-        var first_name = split_name[0];
-        var last_name_first_letter = split_name[1][0];
-
-        if (last_name_first_letter == ".") {
-          return first_name;
-        } else {
-          return first_name + " " + last_name_first_letter + ".";
-        }
-      }
-      else if (name != undefined) {
-        return name;
-      }
-      else {
-        return settings.anonymous_name;
-      }
-    };
-
-
-  var renderStars = function(rating) {
+  var renderStars = function (rating) {
     var stars = '<div class="review-stars"><ul>';
     // fill in gold stars
     for (var i = 0; i < rating; i++) {
@@ -102,14 +91,14 @@ export default function googlePlaces(elem, options) {
     return stars;
   };
 
-  var convertTime = function(UNIX_timestamp) {
+  var convertTime = function (UNIX_timestamp) {
     var a = new Date(UNIX_timestamp * 1000);
     var months = settings.months;
     var time = a.getDate() + ". " + months[a.getMonth()] + " " + a.getFullYear();
     return time;
   };
 
-  var filterReviewsByMinRating = function(reviews) {
+  var filterReviewsByMinRating = function (reviews) {
     if (reviews === void 0) {
       return [];
     } else {
@@ -122,15 +111,17 @@ export default function googlePlaces(elem, options) {
     }
   };
 
-  var sortReviewsByDateDesc = function(reviews) {
+  var sortReviewsByDateDesc = function (reviews) {
     if (typeof reviews != "undefined" && reviews != null && reviews.length != null && reviews.length > 0) {
-      return reviews.sort(function(a,b) {return (a.time > b.time) ? 1 : ((b.time > a.time) ? -1 : 0);} ).reverse();
+      return reviews.sort(function (a, b) {
+        return (a.time > b.time) ? 1 : ((b.time > a.time) ? -1 : 0);
+      }).reverse();
     } else {
       return []
     }
   };
 
-  var renderReviews = function(reviews) {
+  var renderReviews = function (reviews) {
     reviews.reverse();
     var html = "";
     var row_count = (settings.max_rows > 0) ? settings.max_rows - 1 : reviews.length - 1;
@@ -152,17 +143,16 @@ export default function googlePlaces(elem, options) {
     target_div.innerHTML += html;
   };
 
-  var rescueAnonymousReviews = function(review, name) {
+  var rescueAnonymousReviews = function (review, name) {
     if (settings.replace_anonymous == true &&
-        settings.anonymous_name != "" &&
-        (
-          review.author_name.toLowerCase() == settings.anonymous_name.toLowerCase() ||
-          review.author_name == undefined
-        ) &&
-        settings.anonymous_name_replacement != "") {
+      settings.anonymous_name != "" &&
+      (
+        review.author_name.toLowerCase() == settings.anonymous_name.toLowerCase() ||
+        review.author_name == undefined
+      ) &&
+      settings.anonymous_name_replacement != "") {
       return settings.anonymous_name_replacement;
-    }
-    else {
+    } else {
       return name;
     }
   }
@@ -177,7 +167,7 @@ export default function googlePlaces(elem, options) {
     placeId: settings.placeId
   };
   // the callback is what initiates the rendering if Status returns OK
-  var callback = function(place, status) {
+  var callback = function (place, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       var filtered_reviews = filterReviewsByMinRating(place.reviews);
       var sorted_reviews = sortReviewsByDateDesc(filtered_reviews);
