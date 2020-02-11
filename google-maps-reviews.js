@@ -125,8 +125,10 @@ export default function googlePlaces(elem, options) {
     reviews.reverse();
     var html = "";
     var row_count = (settings.max_rows > 0) ? settings.max_rows - 1 : reviews.length - 1;
+
     // make sure the row_count is not greater than available records
     row_count = (row_count > reviews.length - 1) ? reviews.length - 1 : row_count;
+
     for (var i = row_count; i >= 0; i--) {
       var review = reviews[i];
       var stars = renderStars(review.rating);
