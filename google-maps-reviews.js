@@ -183,7 +183,8 @@ export default function googlePlaces(elem, options) {
 
   if (settings.placeId === undefined || settings.placeId === "") {
     console.error("NO PLACE ID DEFINED");
-    return
+    return true
   }
+
   return service.getDetails(request, callback);
 }
