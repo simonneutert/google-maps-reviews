@@ -1,4 +1,4 @@
-// Copyright (c) 2018, Simon Neutert
+// Copyright (c) 2021, Simon Neutert
 //
 // Permission to use, copy, modify, and/or distribute this software for any
 // purpose with or without fee is hereby granted, provided that the above
