@@ -2,6 +2,8 @@
 
 project on npm: https://www.npmjs.com/package/google-maps-reviews
 
+jQuery Version here: https://github.com/simonneutert/jquery-google-reviews
+
 ## Credits
 Inspired by Steven Monson's magnificent article here:
 https://www.launch2success.com/guide/display-google-reviews-website-2017/ or check out [Steven's github](https://github.com/stevenmonson/googleReviews). Steven's code is based on [peledies jquery plugin repo](https://github.com/peledies/google-places). So, I simply remixed their work into this repo. *Thank you guys!*
