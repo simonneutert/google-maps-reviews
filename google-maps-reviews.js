@@ -30,8 +30,8 @@ export default function googlePlaces(google, elem, options) {
     // These are the defaults.
     header: "<h3>Google Reviews</h3>",
     footer: "",
-    max_rows: 6,
-    min_rating: 4,
+    maxRows: 6,
+    minRating: 4,
     months: [
       "Jan",
       "Feb",
@@ -47,12 +47,12 @@ export default function googlePlaces(google, elem, options) {
       "Dec",
     ],
     textBreakLength: "90",
-    shorten_names: true,
-    replace_anonymous: false,
-    anonymous_name: "A Google User",
-    anonymous_name_replacement: "User chose to remain anonymous",
-    show_date: false,
-    show_profile_picture: false,
+    shortenNames: true,
+    replaceAnonymous: false,
+    anonymousName: "A Google User",
+    anonymousNameReplacement: "User chose to remain anonymous",
+    showDate: false,
+    showProfilePicture: false,
     placeId: "",
   };
   settings = { ...settings, ...options };
@@ -84,7 +84,7 @@ export default function googlePlaces(google, elem, options) {
     if (name !== undefined) {
       return name;
     }
-    return settings.anonymous_name;
+    return settings.anonymousName;
   };
 
   const renderStars = (rating) => {
@@ -117,7 +117,7 @@ export default function googlePlaces(google, elem, options) {
       return [];
     }
     for (let i = reviews.length - 1; i >= 0; i -= 1) {
-      if (reviews[i].rating < settings.min_rating) {
+      if (reviews[i].rating < settings.minRating) {
         reviews.splice(i, 1);
       }
     }
@@ -143,14 +143,14 @@ export default function googlePlaces(google, elem, options) {
 
   const rescueAnonymousReviews = (review, name) => {
     if (
-      settings.replace_anonymous === true &&
-      settings.anonymous_name !== "" &&
-      (review.author_name.toLowerCase() ===
-        settings.anonymous_name.toLowerCase() ||
-        review.author_name === undefined) &&
-      settings.anonymous_name_replacement !== ""
+      settings.replaceAnonymous === true &&
+      settings.anonymousName !== "" &&
+      (review.authorName.toLowerCase() ===
+        settings.anonymousName.toLowerCase() ||
+        review.authorName === undefined) &&
+      settings.anonymousNameReplacement !== ""
     ) {
-      return settings.anonymous_name_replacement;
+      return settings.anonymousNameReplacement;
     }
     return name;
   };
@@ -159,7 +159,7 @@ export default function googlePlaces(google, elem, options) {
     reviews.reverse();
     let html = "";
     let rowCount =
-      settings.max_rows > 0 ? settings.max_rows - 1 : reviews.length - 1;
+      settings.maxRows > 0 ? settings.maxRows - 1 : reviews.length - 1;
 
     // make sure the rowCount is not greater than available records
     rowCount = rowCount > reviews.length - 1 ? reviews.length - 1 : rowCount;
@@ -168,15 +168,15 @@ export default function googlePlaces(google, elem, options) {
       const review = reviews[i];
       const stars = renderStars(review.rating);
       const date = convertTime(review.time);
-      let name = settings.shorten_names
-        ? shortenName(review.author_name)
-        : review.author_name;
+      let name = settings.shortenNames
+        ? shortenName(review.authorName)
+        : review.authorName;
       const style =
         review.text.length > parseInt(settings.textBreakLength, 10)
           ? "review-item-long"
           : "review-item";
       let reviewText = review.text;
-      if (settings.show_date === true) {
+      if (settings.showDate === true) {
         reviewText = `<span class='review-date'>${date}</span> ${reviewText}`;
       }
       name = rescueAnonymousReviews(review, name);
