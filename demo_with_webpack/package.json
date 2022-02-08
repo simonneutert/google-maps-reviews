@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "google-maps-reviews": "0.0.22"
+    "google-maps-reviews": "0.1.0"
   },
   "devDependencies": {
     "css-loader": "^1.0.1",
