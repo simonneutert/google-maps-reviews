@@ -71,6 +71,8 @@ export default function googlePlaces(google, elem, options) {
   };
 
   const shortenName = (name) => {
+    if (name === undefined) return settings.anonymousName;
+
     if (name.split(" ").length > 1) {
       const splitName = name.split(" ");
       const firstName = splitName[0];
@@ -145,9 +147,9 @@ export default function googlePlaces(google, elem, options) {
     if (
       settings.replaceAnonymous === true &&
       settings.anonymousName !== "" &&
-      (review.authorName.toLowerCase() ===
+      (review.author_name.toLowerCase() ===
         settings.anonymousName.toLowerCase() ||
-        review.authorName === undefined) &&
+        review.author_name === undefined) &&
       settings.anonymousNameReplacement !== ""
     ) {
       return settings.anonymousNameReplacement;
@@ -166,11 +168,12 @@ export default function googlePlaces(google, elem, options) {
 
     for (let i = rowCount; i >= 0; i -= 1) {
       const review = reviews[i];
+      if (!review) return;
       const stars = renderStars(review.rating);
       const date = convertTime(review.time);
       let name = settings.shortenNames
-        ? shortenName(review.authorName)
-        : review.authorName;
+        ? shortenName(review.author_name)
+        : review.author_name;
       const style =
         review.text.length > parseInt(settings.textBreakLength, 10)
           ? "review-item-long"

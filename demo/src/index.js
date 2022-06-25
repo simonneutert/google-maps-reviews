@@ -9,6 +9,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   console.log(window.google);
   // Find a placeID via https://developers.google.com/places/place-id
   googlePlaces(window.google, "google-reviews", {
-    placeId: "ChIJT8RwZwaPsUcRhkKYaCqr5LI",
+    placeId: "ChIJVdY0sviWvUcRnd0aYxo1RxU",
   });
 });
