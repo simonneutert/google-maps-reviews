@@ -1,6 +1,6 @@
 {
   "name": "google-maps-reviews",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Display Google Reviews of a Place on Google Maps on your website",
   "main": "google-maps-reviews.js",
   "scripts": {
