@@ -2,6 +2,8 @@
 
 project on npm: https://www.npmjs.com/package/google-maps-reviews
 
+jQuery Version here: https://github.com/simonneutert/jquery-google-reviews
+
 ## Credits
 
 Inspired by Steven Monson's magnificent article here:
