@@ -1,5 +1,5 @@
 {
-  "name": "demo_with_webpack",
+  "name": "demo",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
