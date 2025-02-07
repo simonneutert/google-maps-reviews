@@ -148,7 +148,7 @@ export default function googlePlaces(google, elem, options) {
       settings.replaceAnonymous === true &&
       settings.anonymousName !== "" &&
       (review.author_name.toLowerCase() ===
-        settings.anonymousName.toLowerCase() ||
+          settings.anonymousName.toLowerCase() ||
         review.author_name === undefined) &&
       settings.anonymousNameReplacement !== ""
     ) {
@@ -160,8 +160,9 @@ export default function googlePlaces(google, elem, options) {
   const renderReviews = (reviews) => {
     reviews.reverse();
     let html = "";
-    let rowCount =
-      settings.maxRows > 0 ? settings.maxRows - 1 : reviews.length - 1;
+    let rowCount = settings.maxRows > 0
+      ? settings.maxRows - 1
+      : reviews.length - 1;
 
     // make sure the rowCount is not greater than available records
     rowCount = rowCount > reviews.length - 1 ? reviews.length - 1 : rowCount;
@@ -174,10 +175,9 @@ export default function googlePlaces(google, elem, options) {
       let name = settings.shortenNames
         ? shortenName(review.author_name)
         : review.author_name;
-      const style =
-        review.text.length > parseInt(settings.textBreakLength, 10)
-          ? "review-item-long"
-          : "review-item";
+      const style = review.text.length > parseInt(settings.textBreakLength, 10)
+        ? "review-item-long"
+        : "review-item";
       let reviewText = review.text;
       if (settings.showDate === true) {
         reviewText = `<span class='review-date'>${date}</span> ${reviewText}`;

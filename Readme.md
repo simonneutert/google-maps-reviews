@@ -7,11 +7,17 @@ jQuery Version here: https://github.com/simonneutert/jquery-google-reviews
 ## Credits
 
 Inspired by Steven Monson's magnificent article here:
-https://www.launch2success.com/guide/display-google-reviews-website-2017/ or check out [Steven's github](https://github.com/stevenmonson/googleReviews). Steven's code is based on [peledies jquery plugin repo](https://github.com/peledies/google-places). So, I simply remixed their work into this repo. _Thank you guys!_
+https://www.launch2success.com/guide/display-google-reviews-website-2017/ or
+check out [Steven's github](https://github.com/stevenmonson/googleReviews).
+Steven's code is based on
+[peledies jquery plugin repo](https://github.com/peledies/google-places). So, I
+simply remixed their work into this repo. _Thank you guys!_
 
 #### Dear beginners and copy-pasters
 
-:octocat: _For those of you, who are new in programming or can only copy-paste, please make sure, that the Google Maps API and the .js-file of this plugin are successfully loaded before you call this script in the body your html page._
+:octocat: _For those of you, who are new in programming or can only copy-paste,
+please make sure, that the Google Maps API and the .js-file of this plugin are
+successfully loaded before you call this script in the body your html page._
 
 _under demo/index.html is a working demo, the comments will guide you :wink:_
 
@@ -19,7 +25,8 @@ _under demo/index.html is a working demo, the comments will guide you :wink:_
 
 **either**
 
-- add the .js and .css of this repo to your project (see index.html for inspiration :wink:)
+- add the .js and .css of this repo to your project (see index.html for
+  inspiration :wink:)
 
 **or**
 
@@ -27,21 +34,26 @@ _under demo/index.html is a working demo, the comments will guide you :wink:_
 
 **then**
 
-- **if you do not have a working Google Maps API key already:** create a Google API Key: [https://console.developers.google.com/apis/](https://console.developers.google.com/apis/)
+- **if you do not have a working Google Maps API key already:** create a Google
+  API Key:
+  [https://console.developers.google.com/apis/](https://console.developers.google.com/apis/)
 
 - add the following line with your Google Maps API key with the key param:
 
   ```html
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=YourApiKeyHere"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=YourApiKeyHere"
+  ></script>
   ```
 
-- add an empty **_div_** element in your html's body with an unique ID, where the reviews should show up. In this case:
+- add an empty **_div_** element in your html's body with an unique ID, where
+  the reviews should show up. In this case:
 
   `<div id="google-reviews"></div>`
 
 ## Call the Plugin
 
-[Grab your place's ID (https://developers.google.com/places/place-id) and call it as **_placeId_** parameter, when calling the plugin. ](https://developers.google.com/places/place-id)
+[Grab your place's ID (https://developers.google.com/places/place-id) and call it as **_placeId_** parameter, when calling the plugin.](https://developers.google.com/places/place-id)
 
 ```html
 <!-- add this before </body> -->

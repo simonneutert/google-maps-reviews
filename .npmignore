@@ -1,3 +1,5 @@
 demo
 demo_with_webpack
 .DS_Store
+.vscode/
+.eslintrc.js
