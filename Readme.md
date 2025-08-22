@@ -4,6 +4,14 @@ project on npm: https://www.npmjs.com/package/google-maps-reviews
 
 jQuery Version here: https://github.com/simonneutert/jquery-google-reviews
 
+---
+
+> [!IMPORTANT]
+> This project is unmaintained and archived.  
+> Nevertheless, it remains a valuable guide for those who need to implement a similar solution in their projects.
+
+---
+
 ## Credits
 
 Inspired by Steven Monson's magnificent article here:
